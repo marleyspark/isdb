@@ -15,7 +15,7 @@
             "description": "Local development URL"
         },
         {
-            "url": "http://herokuLinkHere",
+            "url": "https://c3-deployment.herokuapp.com/",
             "description": "Production site / deployment site"
         }
     ],

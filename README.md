@@ -1,7 +1,7 @@
 # ISDB - API
 
 > API to be able to search the ISDB database
-> Live demo [_here_](https://angry-mcclintock-681cfb.netlify.app/).
+> Live demo [_here_](https://c3-deployment.herokuapp.com/).
 
 ## Table of Contents
 

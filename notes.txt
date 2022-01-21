@@ -1,0 +1,33 @@
+*FIRSTmongoose* 
+un:admin
+pw:root
+
+mongodb+srv://admin:root@isdb.rlr3q.mongodb.net/
+
+----------------------------------------------------------
+*SECONDmongoose* 
+un:admin
+pw:root
+
+mongodb+srv://admin:root@isdb.sdyth.mongodb.net/
+
+----------------------------------------------------------
+
+--MONGO IMPORTS--
+mongoimport --uri mongodb+srv://admin:roots@isdb.rlr3q.mongodb.net/isdb --collection album --type csv --file albums.csv
+
+mongoimport --uri mongodb+srv://admin:root@isdb.sdyth.mongodb.net/isdb --collection albums --type csv --headerline  --file albums.csv
+mongoimport --uri mongodb+srv://admin:root@isdb.sdyth.mongodb.net/isdb --collection artists --type csv --headerline  --file artists.csv
+mongoimport --uri mongodb+srv://admin:root@isdb.sdyth.mongodb.net/isdb --collection genres --type csv --headerline  --file genres.csv
+mongoimport --uri mongodb+srv://admin:root@isdb.sdyth.mongodb.net/isdb --collection media_types --type csv --headerline  --file media_types.csv
+mongoimport --uri mongodb+srv://admin:root@isdb.sdyth.mongodb.net/isdb --collection tracks --type csv --headerline  --file tracks.csv
+
+********************************************************
+eslint
+ eslint --init
+
+
+**For Fahid**
+
+********************************************************
+

@@ -1,0 +1,384 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "ISDB Project",
+        "description": "API for managing Artist, Tracks, Albums and users",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Andrew Ralph-Gledhill",
+            "email": "marleyspark@hotmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Local development URL"
+        },
+        {
+            "url": "http://herokuLinkHere",
+            "description": "Production site / deployment site"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Authentication operations"
+        },
+        {
+            "name": "ISDB",
+            "description": "ISDB operations"
+        }
+    ],
+    "externalDocs": {
+        "description": "Gihub ReadMe",
+        "url": "https://www.github.com/yourGithubPageHere]"
+    },
+    "components": {
+        "schemas": {
+            "albums": {
+                "type": "object",
+                "properties": {
+                    "AlbumId": {
+                        "type": "number"
+                    },
+                    "Title": {
+                        "type": "string"
+                    },
+                    "ArtistId": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "AlbumId"
+                ],
+                "example": {
+                    "AlbumId": 1,
+                    "Title": "Blue Weekend",
+                    "ArtistId": 1
+                }
+            },
+            "artists": {
+                "type": "object",
+                "properties": {
+                    "ArtistId": {
+                        "type": "number"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "ArtistId",
+                    "name"
+                ],
+                "example": {
+                    "ArtistId": 1,
+                    "name": "Wolf Alice"
+                }
+            },
+            "genres": {
+                "type": "object",
+                "properties": {
+                    "GenreId": {
+                        "type": "number"
+                    },
+                    "Name": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "GenreId",
+                    "Name"
+                ],
+                "example": {
+                    "ArtistId": 1,
+                    "name": "Alt Rock"
+                }
+            },
+            "tracks": {
+                "type": "object",
+                "properties": {
+                    "TrackId": {
+                        "type": "number"
+                    },
+                    "Name": {
+                        "type": "string"
+                    },
+                    "AlbumId": {
+                        "type": "string"
+                    },
+                    "MediaTypeId": {
+                        "type": "number"
+                    },
+                    "GenreId": {
+                        "type": "string"
+                    },
+                    "Composer": {
+                        "type": "string"
+                    },
+                    "Milliseconds": {
+                        "type": "number"
+                    },
+                    "Bytes": {
+                        "type": "number"
+                    },
+                    "UnitPrice": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "TrackId",
+                    "Name",
+                    "AlbumId",
+                    "MediaTypeId",
+                    "GenreId",
+                    "composer",
+                    "Milliseconds",
+                    "Bytes",
+                    "UnitPrice"
+                ],
+                "example": {
+                    "ArtistId": 1,
+                    "name": "Alt Rock",
+                    "AlbumId": "1",
+                    "MediaTypeId": 1,
+                    "GenreId": "1",
+                    "Composer": "Jeff Buckley",
+                    "Milliseconds": 10254,
+                    "Bytes": 12345,
+                    "UnitPrice": 1
+                }
+            }
+        }
+    },
+    "paths": {
+        "/albums/{AlbumId}": {
+            "get": {
+                "description": "returns a single Album",
+                "tags": [
+                    "Albums"
+                ],
+                "parameters": [
+                    {
+                        "name": "AlbumId",
+                        "in": "path",
+                        "description": "ID of album",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/albums"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "album not found, try again",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/albums"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/artist/{ArtistId}": {
+            "get": {
+                "description": "returns a single artist",
+                "tags": [
+                    "Artists"
+                ],
+                "parameters": [
+                    {
+                        "name": "ArtistId",
+                        "in": "path",
+                        "description": "ID of artist",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/artists"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "artist not found, try again",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/artists"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/genres/genres": {
+            "get": {
+                "description": "returns all genres",
+                "tags": [
+                    "Genres"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/genres"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "genre not found, try again",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/genres"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tracks/tracks": {
+            "post": {
+                "description": "inserts new track",
+                "tags": [
+                    "Tracks"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/tracks"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not added. You need 'TrackId, Name, AlbumId, MediaTypeId, GenreId, Composer, Millieseconds, Bytes and UnitPrice",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/tracks"
+                                },
+                                "/genres/genres": {
+                                    "get": {
+                                        "description": "returns all genres",
+                                        "tags": [
+                                            "Genres"
+                                        ],
+                                        "parameters": [
+                                            {
+                                                "name": "none",
+                                                "in": "path",
+                                                "description": "nothing required",
+                                                "required": false,
+                                                "schema": {
+                                                    "type": "integer",
+                                                    "format": "int32"
+                                                }
+                                            }
+                                        ],
+                                        "responses": {
+                                            "200": {
+                                                "description": "success response",
+                                                "content": {
+                                                    "application/json": {
+                                                        "schema": {
+                                                            "$ref": "#/components/schemas/genres"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "404": {
+                                                "description": "genre not found, try again",
+                                                "content": {
+                                                    "application/json": {
+                                                        "schema": {
+                                                            "$ref": "#/components/schemas/genres"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tracks/{TracksId}": {
+            "get": {
+                "description": "returns a single track",
+                "tags": [
+                    "Tracks"
+                ],
+                "parameters": [
+                    {
+                        "name": "TracksId",
+                        "in": "path",
+                        "description": "ID of Track",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/tracks"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "track not found, try again",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/tracks"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
